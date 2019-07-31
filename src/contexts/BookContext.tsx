@@ -1,7 +1,7 @@
 import React, {createContext} from "react";
 import uuid from "uuid";
 
-interface Book {
+export interface Book {
   title: string;
   author: string;
   id: string;
