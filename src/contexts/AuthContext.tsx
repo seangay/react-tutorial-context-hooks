@@ -1,17 +1,21 @@
 import React, {createContext} from "react";
 
-export const AuthContext = createContext({});
-
 type Props = {};
 
 type State = {
   isAuthenticated: boolean;
+  toggleAuth?: () => void;
 };
 
+const initialState = {
+  isAuthenticated: true
+};
+
+export const AuthContext = createContext<State>(initialState);
+
+
 export class AuthContextProvider extends React.Component<Props, State> {
-  state: Readonly<State> = {
-    isAuthenticated: true
-  };
+  state: Readonly<State> = initialState;
 
   toggleAuth = () => {
     this.setState({
