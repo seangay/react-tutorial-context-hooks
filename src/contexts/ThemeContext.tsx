@@ -33,7 +33,8 @@ export class ThemeContextProvider extends React.Component<Props, State> {
 
   render() {
     return (
-      <ThemeContext.Provider value={{...this.state, toggleTheme: this.toggleTheme}}>
+      <ThemeContext.Provider
+        value={{...this.state, toggleTheme: this.toggleTheme}}>
         {this.props.children}
       </ThemeContext.Provider>
     );
