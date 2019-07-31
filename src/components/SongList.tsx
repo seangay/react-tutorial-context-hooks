@@ -1,10 +1,6 @@
 import React, {useState} from 'react';
 import uuid from "uuid/v1";
-
-interface Song {
-  title: string;
-  id: string;
-}
+import {SongCreationForm} from "./SongCreationForm";
 
 export function SongList() {
   const [songs, setSongs] = useState([
@@ -13,8 +9,8 @@ export function SongList() {
     {title: 'this wild darkness', id: "3"}
   ]);
 
-  const addSong = () => {
-    setSongs([...songs, {title: "New Song", id: uuid()}]);
+  const addSong = (title: string) => {
+    setSongs([...songs, {title, id: uuid()}]);
   };
 
   return (
@@ -24,7 +20,7 @@ export function SongList() {
           return (<li key={song.id}>{song.title}</li>)
         })}
       </ul>
-      <button onClick={addSong}>Add a song</button>
+      <SongCreationForm addSong={addSong} />
     </div>
   );
 }
