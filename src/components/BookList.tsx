@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {BookContext} from "../contexts/BookContext";
+import {Book, BookContext} from "../contexts/BookContext";
 import {BookDetails} from "./BookDetails";
 
 export const BookList = () => {
@@ -8,7 +8,7 @@ export const BookList = () => {
   return books.length ? (
     <div className="book-list">
       <ul>
-        {books.map((book)=> {
+        {books.map((book: Book)=> {
           return (<li key={book.id}><BookDetails book={book} /></li>)
         })}
       </ul>

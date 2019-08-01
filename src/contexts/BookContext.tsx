@@ -1,4 +1,4 @@
-import React, {createContext, useReducer} from "react";
+import React, {createContext, useReducer, useEffect} from "react";
 import {BookReducer} from "../reducers/BookReducer";
 
 export interface Book {
@@ -16,10 +16,17 @@ const initialState = {
   books: []
 };
 
-export const BookContext = createContext<State>(initialState);
+// @ts-ignore
+export const BookContext = createContext<State>();
 
 const BookContextProvider = (props: any) => {
-  const [books, dispatch] = useReducer(BookReducer, initialState);
+  const [books, dispatch] = useReducer(BookReducer, initialState, () => {
+    const localData = localStorage.getItem("books");
+    return localData ? JSON.parse(localData) : initialState;
+  });
+  useEffect(() => {
+    localStorage.setItem("books", JSON.stringify(books))
+  }, [books]);
 
   return (
     <BookContext.Provider value={{books, dispatch}}>
